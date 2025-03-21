@@ -7,9 +7,19 @@ import hashlib
 import base64
 import secrets
 import os
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
+
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins; restrict in production
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allows all headers
+)
 # In-memory storage for cryptographic keys
 keys_store = {}
 
