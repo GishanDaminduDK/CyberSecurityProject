@@ -1,0 +1,29 @@
+{
+    "builds": [
+      {
+        "src": "app/main.py",
+        "use": "@vercel/python",
+        "config": { 
+          "runtime": "python3.9",
+          "maxLambdaSize": "15mb",
+          "includeFiles": [
+            "app/models/**",
+            "app/services/**",
+            "app/requirements.txt"
+          ]
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "app/main.py",
+        "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
+      }
+    ],
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/app/main.py" }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
