@@ -1,0 +1,197 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CyberProject API",
+    "description": "API documentation for CyberProject based on the provided Postman collection.",
+    "version": "1.0.0"
+  },
+  "host": "cyber-security-project-l93d.vercel.app",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/generate-key": {
+      "post": {
+        "summary": "Generate encryption key",
+        "description": "Generates an encryption key of the specified type and size.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "key_type": {
+                  "type": "string",
+                  "example": "AES"
+                },
+                "key_size": {
+                  "type": "integer",
+                  "example": 256
+                }
+              },
+              "required": [
+                "key_type",
+                "key_size"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Key generated successfully"
+          }
+        }
+      }
+    },
+    "/encrypt": {
+      "post": {
+        "summary": "Encrypt data",
+        "description": "Encrypts plaintext using the specified key and algorithm.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "key_id": {
+                  "type": "string"
+                },
+                "plaintext": {
+                  "type": "string"
+                },
+                "algorithm": {
+                  "type": "string",
+                  "example": "AES"
+                }
+              },
+              "required": [
+                "key_id",
+                "plaintext",
+                "algorithm"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data encrypted successfully"
+          }
+        }
+      }
+    },
+    "/decrypt": {
+      "post": {
+        "summary": "Decrypt data",
+        "description": "Decrypts ciphertext using the specified key and algorithm.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "key_id": {
+                  "type": "string"
+                },
+                "ciphertext": {
+                  "type": "string"
+                },
+                "algorithm": {
+                  "type": "string",
+                  "example": "AES"
+                }
+              },
+              "required": [
+                "key_id",
+                "ciphertext",
+                "algorithm"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data decrypted successfully"
+          }
+        }
+      }
+    },
+    "/generate-hash": {
+      "post": {
+        "summary": "Generate hash",
+        "description": "Generates a hash of the provided data using the specified algorithm.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "string"
+                },
+                "algorithm": {
+                  "type": "string",
+                  "example": "SHA-256"
+                }
+              },
+              "required": [
+                "data",
+                "algorithm"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hash generated successfully"
+          }
+        }
+      }
+    },
+    "/verify-hash": {
+      "post": {
+        "summary": "Verify hash",
+        "description": "Verifies if the provided data matches the given hash value.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "string"
+                },
+                "hash_value": {
+                  "type": "string"
+                },
+                "algorithm": {
+                  "type": "string",
+                  "example": "SHA-256"
+                }
+              },
+              "required": [
+                "data",
+                "hash_value",
+                "algorithm"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hash verification successful"
+          }
+        }
+      }
+    }
+  }
+}
